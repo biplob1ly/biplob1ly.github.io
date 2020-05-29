@@ -1,18 +1,17 @@
 # Setup
-title:               Lanyon
-tagline:             'A Jekyll theme'
-description:         'A reserved <a href="https://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+title:               Cahier
+tagline:             "A Greenhorn's Notebook"
+description:         'An open webspace where I can scribble down my random thoughs.'
 url:                 'https://biplob1ly.github.io'
 baseurl:             ''
 paginate:            5
 permalink:           pretty
-# relative_permalinks: true
 
 # About/contact
 author:
-  name:              Mark Otto
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  name:              Biplob Biswas
+  url:               https://twitter.com/LonelyLizard6
+  email:             biplob1ly@gmail.com
 
 # Gems
 plugins:
@@ -20,4 +19,4 @@ plugins:
 
 # Custom vars
 version:             1.1.0
-google_analytics_id: #UA-XXXX-Y
+google_analytics_id: UA-167981062-1
