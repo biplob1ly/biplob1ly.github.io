@@ -10,8 +10,13 @@ permalink:           pretty
 # About/contact
 author:
   name:              Biplob Biswas
-  url:               https://twitter.com/LonelyLizard6
+  twitter:           LonelyLizard6
   email:             biplob1ly@gmail.com
+  email_md5:         d4a33459796252062e0a0441faee5cdf
+  github:            biplob1ly
+  linkedin:          biplob1ly
+  goodreads:         biplob1ly
+#  google_scholar:
 
 # Gems
 plugins:
