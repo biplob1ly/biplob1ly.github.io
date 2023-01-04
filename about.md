@@ -3,7 +3,7 @@ layout: page
 title: About Me
 ---
 
-I am a fifth-year Ph.D. student at [Department of Computer Science and Engineering, The Ohio State University (OSU)](https://cse.osu.edu/) supervised by Prof. [Rajiv Ramnath](https://web.cse.ohio-state.edu/~ramnath.6/). My research focuses on the application of in the application of machine learning, especially in Natural Language Processing (NLP). I have experience in employing neural information retrieval (IR) and reinforcement learning (RL) techniques to develop retrieval-guided response generation (NLG) models for conversational agents. 
+I am a fifth-year Ph.D. student at [Department of Computer Science and Engineering, The Ohio State University (OSU)](https://cse.osu.edu/) supervised by Prof. [Rajiv Ramnath](https://web.cse.ohio-state.edu/~ramnath.6/). My research focuses on the application of in the application of machine learning, especially in **Natural Language Processing (NLP)**. I have experience in employing neural **information retrieval (IR)** and **reinforcement learning (RL)** techniques to develop **retrieval-guided response generation (NLG)** models for conversational agents. 
 
 Before joining OSU, I obtained my B.Sc. in CSE from [Bangladesh Universiy of Engineering and Technology (BUET)](https://www.buet.ac.bd/). I also worked at [Kona Software Lab Ltd](https://konasl.com/) at the Dhaka site for 2 years. 
 
@@ -32,9 +32,9 @@ Projects
 - Designed and developed **a deep-learning model - TransICD** ([Code](https://github.com/biplob1ly/TransICD)) to predict ICD codes from a patient discharge summary. _\[Python, PyTorch\]_
 	* The model achieves stable **micro-AUC and micro-F1 scores of 0.92 and 0.64 respectively** with 1.1% and 2.5% increases over the corresponding metrics of LEAM (contemporary state-of-the-art). 
 
-- Developed a tool to extract and analyze pre-installed applications in Android Firmware. _\[Python, MySQL_\]
+- Developed a tool to extract and analyze pre-installed applications in Android Firmware. _\[Python, MySQL\]_
 
-- Developed the front-end of NexusPay, (https://play.google.com/store/apps/details?id=com.dbbl.nexus.pay) **a leading Android payment application (1M+ Downloads)** of Bangladesh. _\[Android, Java, SQLite\]_
+- Developed the front-end of [NexusPay](https://play.google.com/store/apps/details?id=com.dbbl.nexus.pay) **a leading Android payment application (1M+ Downloads)** of Bangladesh. _\[Android, Java, SQLite\]_
 	* Utilized **REST APIs** for backend communication and implemented various transaction interfaces including NFC, QR-code, and online payment.
 
 - Developed **a Nexgo POS application** to facilitate the transaction from an Android payment application. _\[C\]_
