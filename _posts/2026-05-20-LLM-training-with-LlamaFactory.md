@@ -3,8 +3,6 @@ layout: post
 title: Training LLM with LlamaFactory on Nvidia DGX
 ---
 
-# Training LLM with LlamaFactory on Nvidia DGX
-
 Hi there! Biplob here. This article is about training a small LLM on Nvidia DGX with [LlamaFactory](https://github.com/hiyouga/LlamaFactory).
 
 ## Installation
