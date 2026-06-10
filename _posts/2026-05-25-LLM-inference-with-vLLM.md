@@ -176,14 +176,17 @@ To watch nvidia gpu usage on another terminal:
 ```bash
 watch -n 1 -d nvidia-smi
 ```
+
+---
 | Flag | Meaning |
 |---|---|
 | `-n 1` | Refresh every **1 second** |
 | `-d` | **Highlight differences** between refreshes |
 
+
 To exit: Press Ctrl + C.
 
-Good practice. Here's how to set it up:
+Good practice to use .env file. Here's how to set it up:
 
 ---
 
