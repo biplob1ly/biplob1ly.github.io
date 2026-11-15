@@ -23,11 +23,18 @@ Publications
 Projects
 --------
 
+- Fine-tuned multi-billion-parameter LLMs (27B–31B) into a state-predicting world model for enterprise agents via
+distributed multi-GPU training, boosting state-prediction accuracy by 50%. [LoRA SFT, ZeRO-3]
+
+- Built an end-to-end agentic evaluation pipeline for the WoW enterprise benchmark (6K+ tables) using the
+A2A protocol and MCP-ReAct executors. [vLLM, OpenAI API, A2A]
+
+- Engineered an agentic business-process analysis tool, reducing manual effort (FTE) by 15% and
+outperforming top-ranked TableBench model in data analysis task. [Python, LangGraph, Scikit, Streamlit
+
 - Designed and developed a **multi-agent system** (RAG, Coding) for an AI chatbot to analyze tabular and textual data. _\[Python, LangChain, LangGraph, Ollama, Streamlit, Chroma\]_
 
 - Designed a **sequence generation model** for predictive process monitoring.(Python, PyTorch)
-
-- Developed an ML-driven web tool for process data analysis and visualization.(Python, Streamlit)
 
 - Designed and developed **a knowledge-grounded response generation framework** to automatically answer user queries in a customer care setting (Real-world data) and deployed it as an API service. _\[AWS, Docker, Python, PyTorch, HuggingFace\]_
 	* Employed neural **information retrieval (IR)** techniques to collect knowledge from historical unstructured data and blended that information into generated responses through a fine-tuned GPT-2 model.

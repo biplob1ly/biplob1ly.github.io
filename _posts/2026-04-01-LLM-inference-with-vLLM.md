@@ -3,7 +3,7 @@ layout: post
 title: LLM Inference with vLLM
 ---
 
-Hi there! Biplob here. This article is about serving an LLM with vLLM on Nvidia DGX.
+Ciao! Biplob here. This article is about serving an LLM with vLLM on Nvidia DGX.
 
 ## Check
 
