@@ -3,8 +3,6 @@ layout: post
 title: Automatic Agent Evaluation - When the Benchmark Becomes an Agent
 ---
 
-# Automatic Agent Evaluation: When the Benchmark Becomes an Agent
-
 *Namaste, Biplob again! This article is about how to automate evaluation of an agent on a benchmark (e.g. the World of Workflows (WoW) enterprise benchmark) into AgentBeats with a 🟢 green evaluator and a 🟣 purple competitor that talk to each other over A2A.*
 
 ---
