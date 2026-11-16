@@ -13,6 +13,7 @@ Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content 
   - [Sidebar menu](#sidebar-menu)
   - [Themes](#themes)
   - [Reverse layout](#reverse-layout)
+  - [Content width](#content-width)
 - [Development](#development)
 - [Author](#author)
 - [License](#license)
@@ -76,6 +77,21 @@ Reverse the page orientation with a single class.
   ...
 </body>
 ```
+
+
+### Content width
+
+Lanyon caps the page column at 28rem / 32rem / 38rem depending on screen size (`.container` in `public/css/lanyon.css`). This site overrides that in `public/css/custom.css` (loaded after `lanyon.css`) with a single variable:
+
+```css
+:root {
+  --content-max-width: 64rem;   /* ~1280px at the 20px root font size */
+}
+```
+
+- Change `64rem` to make the column wider or narrower (60-70rem is a good range). Use `none` for true full width, though very long lines are harder to read.
+- It applies to every page, including the masthead, because they all share `.container`.
+- Don't edit `lanyon.css` for this; keep customisations in `custom.css`.
 
 
 ### Sidebar overlay instead of push

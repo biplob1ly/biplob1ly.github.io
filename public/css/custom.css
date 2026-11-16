@@ -17,3 +17,14 @@
 	width: 160px;
 	margin: 0 auto;
 }
+
+/* Wider content column (overrides Lanyon's 28/32/38rem .container caps).
+   Change --content-max-width to adjust; applies to all pages. */
+:root {
+	--content-max-width: 64rem;
+}
+
+.container,
+.masthead .container {
+	max-width: var(--content-max-width);
+}
