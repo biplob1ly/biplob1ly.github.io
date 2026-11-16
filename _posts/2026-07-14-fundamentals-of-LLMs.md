@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Fundamentals of LLMs: How LLMs Are Built, Adapted, and Served
+title: Fundamentals of LLMs - How LLMs Are Built, Adapted, and Served
 ---
 
 konnichiwa! Biplob here. This article is a short(!) summary about how LLMs are Built, Adapted, and Served. Shoutout to LLMs for putting this together for me.
