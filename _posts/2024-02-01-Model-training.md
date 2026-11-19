@@ -3,6 +3,8 @@ layout: post
 title: How to train a model?
 ---
 
+*Hola! Another quick-read from Biplob's end about training a language model.*
+
 ## 1. Tokenization
 
 Before any training, raw text must be converted into integer token IDs. The vocabulary is built once (e.g. via BPE — Byte-Pair Encoding) and the tokenizer is then frozen.

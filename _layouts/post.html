@@ -29,6 +29,17 @@ layout: default
   }
 </script>
 
+<script>
+  // Kramdown renders $$...$$ as <script type="math/tex">. Load MathJax only on pages that contain math.
+  if (document.querySelector('script[type^="math/tex"]')) {
+    window.MathJax = { tex2jax: { skipTags: ['pre', 'code'] }, TeX: { equationNumbers: { autoNumber: 'none' } } };
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+</script>
+
 {% if site.related_posts.size >= 1 %}
 <div class="related">
   <h2>Related posts</h2>

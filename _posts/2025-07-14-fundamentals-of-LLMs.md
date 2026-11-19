@@ -8,25 +8,29 @@ konnichiwa! Biplob here. This article is a short(!) summary about how LLMs are B
 
 **Contents**
 
-Foundations
-
-[1. The building blocks](#basics) [2. Designing a model](#design) [3. The classic training pipeline](#training)
-
-The frontier
-
-[4. How frontier models are trained](#frontier-train) [5. Reasoning and test-time compute](#reasoning) [6. How frontier models are served](#frontier-infer)
-
-Applying LLMs
-
-[7. Prompt, retrieve, or fine-tune](#adapt) [8. Choosing by data type](#data) [9. Retrieval design](#rag) [10. Keeping a system current](#continual)
-
-Trust and operations
-
-[11. Evaluation](#eval) [12. Trade-offs and risks](#risks) [13. Diagnosing problems](#debug) [14. Case studies](#cases)
-
-Reference
-
-[15. FAQ](#faq) [16. Common mistakes](#mistakes) [17. Cheat sheet](#cheat) [18. Closing thoughts](#close)
+- **Foundations**
+  - [1. The building blocks](#basics)
+  - [2. Designing a model](#design)
+  - [3. The classic training pipeline](#training)
+- **The frontier**
+  - [4. How frontier models are trained](#frontier-train)
+  - [5. Reasoning and test-time compute](#reasoning)
+  - [6. How frontier models are served](#frontier-infer)
+- **Applying LLMs**
+  - [7. Prompt, retrieve, or fine-tune](#adapt)
+  - [8. Choosing by data type](#data)
+  - [9. Retrieval design](#rag)
+  - [10. Keeping a system current](#continual)
+- **Trust and operations**
+  - [11. Evaluation](#eval)
+  - [12. Trade-offs and risks](#risks)
+  - [13. Diagnosing problems](#debug)
+  - [14. Case studies](#cases)
+- **Reference**
+  - [15. FAQ](#faq)
+  - [16. Common mistakes](#mistakes)
+  - [17. Cheat sheet](#cheat)
+  - [18. Closing thoughts](#close)
 
 Practical guide
 
@@ -48,7 +52,8 @@ Updated November 2026 · about 45 minutes to read · works as a reference you ca
 - Match the tool to the data: LLMs for free-form language, boosted trees for structured tables, small encoders for high-volume classification.
 - Keep knowledge outside the weights where you can, and update weights only through gated, evaluated releases.
 
-## Part 1 · FoundationsThe building blocks
+## 1. The building blocks
+{: #basics}
 
 Before talking about frontier techniques, it helps to have a precise mental model of what a language model is and which properties drive cost and behavior.
 
@@ -111,7 +116,8 @@ During generation, the keys and values of previous tokens are cached so they are
 - Scaling laws guide the training budget, but inference volume changes what “optimal” means.
 - Fluency is not truth: the pretraining objective never rewarded factuality directly.
 
-## Part 2 · FoundationsDesigning a model: size and architecture choices
+## 2. Designing a model: size and architecture choices
+{: #design}
 
 ### How to pick a model size
 
@@ -164,7 +170,8 @@ Put everything in the context window, or retrieve?
 - MoE buys capacity per unit of compute at the price of memory and operational complexity.
 - Many architecture choices (grouped-query attention, latent attention, local windows) are really about shrinking the KV cache for serving.
 
-## Part 3 · FoundationsThe classic training pipeline
+## 3. The classic training pipeline
+{: #training}
 
 Most modern models, frontier or not, pass through the same broad stages. Part 4 shows how the frontier has extended each one.
 
@@ -207,7 +214,8 @@ Most modern models, frontier or not, pass through the same broad stages. Part 4 
 - Data quality, mixture, and decontamination matter as much as scale.
 - Rewards you can verify programmatically are the most reliable training signal for reasoning.
 
-## Part 4 · The frontierHow frontier models are trained today
+## 4. How frontier models are trained today
+{: #frontier-train}
 
 **A note on sources.** Leading labs disclose little about their newest systems. What follows reflects publicly documented practice, mostly from technical reports of open-weight models and from published research, plus informed generalization. Treat specifics as representative of the field’s direction, not as a description of any one lab’s recipe, and expect details to keep changing.
 
@@ -314,7 +322,8 @@ How should you allocate compute between pretraining and RL?
 - Reinforcement learning on verifiable rewards, and in agentic environments, drives recent reasoning and tool-use gains.
 - Every technique trades signal quality against cost, gameability, or domain coverage.
 
-## Part 5 · The frontierReasoning models and test-time compute
+## 5. Reasoning models and test-time compute
+{: #reasoning}
 
 The most visible recent shift is the rise of **reasoning models**: models trained, mostly with reinforcement learning, to produce an extended internal chain of thought before the final answer. Instead of one fast forward pass per token with a short answer, the model may spend thousands of tokens exploring, checking, and revising. Accuracy on hard problems rises with the amount of thinking, giving a new scaling axis that is independent of model size.
 
@@ -349,7 +358,8 @@ Use a reasoning model, or a standard fast model?
 - It pays off most where answers are verifiable and the task is genuinely multi-step.
 - Budget and route it: reasoning everywhere is the fastest way to a surprising bill.
 
-## Part 6 · The frontierHow frontier models are served
+## 6. How frontier models are served
+{: #frontier-infer}
 
 Serving a large model well is an engineering problem as demanding as training it. The goals are to maximize throughput (requests per GPU-hour), keep latency within targets, and control cost.
 
@@ -413,7 +423,8 @@ Self-host an open model or use a hosted API?
 - The KV cache and memory bandwidth, not raw FLOPs, shape most serving decisions.
 - Quantization, caching, speculation, and routing each trade a little quality or complexity for large cost and latency gains; verify each with your own evals.
 
-## Part 7 · Applying LLMsPrompt, retrieve, or fine-tune?
+## 7. Prompt, retrieve, or fine-tune?
+{: #adapt}
 
 Everything so far describes how models are made. Now to the practical question: given a problem, how do you get a model to solve it well and cheaply? There is a ladder of options, and the discipline is to climb it only on evidence.
 
@@ -502,7 +513,8 @@ When should you distill a large model into a small one?
 - Knowledge goes in retrieval, behavior goes in weights.
 - Data size and model size jointly decide how much adaptation you need and which method fits.
 
-## Part 8 · Applying LLMsChoosing the approach by type of data
+## 8. Choosing the approach by type of data
+{: #data}
 
 The same model family behaves very differently across data types. This table summarizes the first choice for each.
 
@@ -553,7 +565,8 @@ Classify 5 million support tickets into 40 categories.
 - Combine tools: an LLM to read text and create labels, a cheaper model to run at scale.
 - Delegate computation to tools (SQL, code) rather than asking the model to calculate.
 
-## Part 9 · Applying LLMsRetrieval-augmented generation: the design choices
+## 9. Retrieval-augmented generation: the design choices
+{: #rag}
 
 Since retrieval is the right answer for most knowledge needs, it is worth knowing its design space. Each decision below trades quality against cost, latency, or complexity.
 
@@ -579,7 +592,8 @@ Your RAG answers are wrong. Where do you look first?
 - **Generation:** faithfulness (is every claim supported by retrieved text?), answer correctness, completeness, and citation accuracy.
 - **End to end:** a golden question set that includes unanswerable questions, so you measure whether the system correctly abstains.
 
-## Part 10 · Applying LLMsContinuous learning: keeping a system current
+## 10. Continuous learning: keeping a system current
+{: #continual}
 
 Model weights are frozen at a point in time, so models go stale while the world keeps changing. The first step is to decide what kind of change you are dealing with, because different changes call for different levers.
 
@@ -626,7 +640,8 @@ Why not fine-tune on production data automatically every night?
 
 **Also pin versions.** When a provider updates a hosted model, or you swap base models, behavior can shift. Pin versions, keep a regression suite, and re-run it before every upgrade, because prompts tuned for one model can degrade on another.
 
-## Part 11 · Trust and operationsEvaluation
+## 11. Evaluation
+{: #eval}
 
 Evaluation deserves a section of its own because every decision in this guide depends on it. Without a trustworthy evaluation you cannot tell whether a change helped.
 
@@ -665,7 +680,8 @@ Evaluation deserves a section of its own because every decision in this guide de
 
 Evaluate whether claims are supported by provided sources (groundedness), whether the model abstains appropriately, and factuality against a trusted reference. Reduce hallucination with retrieval, citations, instructions to abstain, lower temperature, verification passes, and tools for anything computable.
 
-## Part 12 · Trust and operationsTrade-offs and risks at a glance
+## 12. Trade-offs and risks at a glance
+{: #risks}
 
 | Trade-off | How to reason about it |
 | --- | --- |
@@ -690,7 +706,8 @@ Evaluate whether claims are supported by provided sources (groundedness), whethe
 - **Cost blowups:** unbounded context growth, long reasoning, agent loops, and retries. Set token budgets and rate limits.
 - **Vendor and model drift:** pin versions and keep regression tests.
 
-## Part 13 · Trust and operationsDiagnosing problems
+## 13. Diagnosing problems
+{: #debug}
 
 When something is wrong, resist the urge to change the model first. The default order is:
 
@@ -715,7 +732,8 @@ When something is wrong, resist the urge to change the model first. The default 
 | Quality regressed after a provider update | Hosted model version change | Pin versions; run the regression suite; adjust prompts per version. |
 | Arithmetic or counting errors | Token-based processing is poor at precise computation | Give the model a calculator or code tool. |
 
-## Part 14 · Trust and operationsCase studies: the decisions in practice
+## 14. Case studies: the decisions in practice
+{: #cases}
 
 Each case follows the same pattern: framing, choice, reasoning, risks. Try deciding before you open it.
 
@@ -791,7 +809,8 @@ Case I. Quality slips six months after launch
 
 **Because** degradation has several different causes with different fixes, and retraining blindly can make things worse.
 
-## Part 15 · ReferenceFrequently asked questions
+## 15. Frequently asked questions
+{: #faq}
 
 Why is attention quadratic, and how is it mitigated?
 
@@ -865,7 +884,8 @@ How would you cut LLM cost by half without losing quality?
 
 Measure where tokens go first. Then trim prompts and cap outputs, cache static prefixes and repeated responses, route easy requests to a smaller model, batch offline work, bound reasoning budgets, and distill or fine-tune a small model for the dominant narrow task. Verify with the eval set after each change.
 
-## Part 16 · ReferenceCommon mistakes
+## 16. Common mistakes
+{: #mistakes}
 
 - **Fine-tuning to add knowledge.** Retrieval is usually the right tool; fine-tuning is for behavior.
 - **Using an LLM for tabular prediction** without trying boosted trees first.
@@ -881,7 +901,8 @@ Measure where tokens go first. Then trim prompts and cap outputs, cache static p
 - **Forgetting versioning.** Hosted models change; pin and regression-test.
 - **Skipping the human in the loop** for high-stakes decisions.
 
-## Part 17 · ReferenceCheat sheet
+## 17. Cheat sheet
+{: #cheat}
 
 ### Formulas and rules of thumb
 
@@ -936,7 +957,8 @@ Cost:                (input_tokens * in_price + output_tokens * out_price) * req
 | Serving | Continuous batching, paged and cached KV, speculative decoding, quantization, disaggregation, routing | Throughput, latency, cost | Quality loss, complexity, operational burden |
 | Distillation | Teacher-to-student training | Cheap narrow-task performance | Out-of-distribution gap, license limits |
 
-## Part 18 · Wrapping upClosing thoughts
+## 18. Closing thoughts
+{: #close}
 
 If there is one lesson across pretraining, post-training, serving, and application design, it is that the field’s progress comes from well-chosen trade-offs under constraints, not from a single magic technique. Frontier labs trade training compute against inference cost, model capacity against memory, reasoning depth against latency, and signal quality against gameability. You face the same shapes of decision at a smaller scale: prompt versus retrieve versus fine-tune, large versus small, fresh versus stable, accurate versus cheap.
 
