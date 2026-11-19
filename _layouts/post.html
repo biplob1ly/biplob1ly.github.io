@@ -30,14 +30,18 @@ layout: default
 </script>
 
 <script>
-  // Kramdown renders $$...$$ as <script type="math/tex">. Load MathJax only on pages that contain math.
-  if (document.querySelector('script[type^="math/tex"]')) {
-    window.MathJax = { tex2jax: { skipTags: ['pre', 'code'] }, TeX: { equationNumbers: { autoNumber: 'none' } } };
-    const s = document.createElement('script');
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML';
-    s.async = true;
-    document.head.appendChild(s);
-  }
+  // Newer kramdown renders $$...$$ as \( ... \) (inline) and \[ ... \] (display) text.
+  // Load MathJax 3 only on pages that contain such math.
+  (function () {
+    var post = document.querySelector('.post');
+    if (post && /\\\(|\\\[/.test(post.textContent)) {
+      window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] } };
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js';
+      s.async = true;
+      document.head.appendChild(s);
+    }
+  })();
 </script>
 
 {% if site.related_posts.size >= 1 %}
